@@ -87,7 +87,7 @@ def OPCIONES_USUARIO(): # Lista con opciones para el usuario
     "5. Salir\n"))
     return opcion
 
-ruta_json = Path(r"C:\Users\SANTINO\OneDrive\Escritorio\Proyectos Python Automatizacion\GestorDeTareas\lista_tareas.json") # Ruta al archivo Json
+ruta_json = Path(r"Ingrese Su Ruta\lista_tareas.json") # Ruta al archivo Json
 
 lis_datos = CARGAR_DATOS_JSON(ruta_json)
 if lis_datos == None: # Verifica que haya cargado correctamente
