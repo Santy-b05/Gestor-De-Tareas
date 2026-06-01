@@ -2,9 +2,9 @@
 from pathlib import Path
 import json
 
-def CARGAR_DATOS_JSON(ruta):
+def CARGAR_DATOS_JSON(ruta): # Carga el archivo con la información, en caso de ser vacío devuelve una lista vacía
     try:
-        with open(ruta,"r", encoding="utf-8") as f:
+        with open(ruta,"r", encoding="utf-8") as f: 
             lis_datos = json.load(f)
     except FileNotFoundError: 
         lis_datos = None
@@ -12,7 +12,7 @@ def CARGAR_DATOS_JSON(ruta):
         lis_datos = []
     return lis_datos
 
-def ALMACENAR_DATOS(ruta, datos):
+def ALMACENAR_DATOS(ruta, datos): # Una vez se le da a salir se almacenan los datos de nuevo en el archivo
     try:
         with open(ruta,"w", encoding="utf-8") as f:
             json.dump(datos, f) 
@@ -20,7 +20,7 @@ def ALMACENAR_DATOS(ruta, datos):
     except FileNotFoundError:
         print("No pudieron guardarse los datos correctamente, verifique el archivo.")
 
-def VER_TAREAS(datos):
+def VER_TAREAS(datos): # Hace una lista con la tareas y su estado
     i = 1
     for dato in datos:
         if dato["Estado"] == "Incompleta":
@@ -29,7 +29,7 @@ def VER_TAREAS(datos):
             print(f"{i}. {dato['Etiqueta']}: {dato['Estado']} [✅]\n")
         i += 1
 
-def AGREGAR_TAREA(datos):
+def AGREGAR_TAREA(datos): # Permite agregar nuevas tareas
     dicc_tarea = {}
     try:
         dicc_tarea["Etiqueta"] = input("Ingrese una etiqueta para la tarea: ")
@@ -39,7 +39,7 @@ def AGREGAR_TAREA(datos):
         print("A ocurrido un error a la hora de crear la tarea, volver a intentar")
     return datos
 
-def MODIFICAR_TAREA(datos):
+def MODIFICAR_TAREA(datos): # Modifica una tarea ya existente
     i = 0
     creado = False
     tarea_cambio = input("Indique etiqueta de la tarea (Si no quiere editar dejar en blanco): ")
@@ -58,7 +58,7 @@ def MODIFICAR_TAREA(datos):
             i += 1
     return datos
 
-def BORRAR_TAREA(datos):
+def BORRAR_TAREA(datos): # Borra una tarea
     i = 0
     encontrado = False
     tarea_borrar = input("Ingrese la etiqueta de la tarea (Si no quiere borrar dejar en blanco): ")
@@ -77,7 +77,7 @@ def BORRAR_TAREA(datos):
             i += 1
     return datos
 
-def OPCIONES_USUARIO():
+def OPCIONES_USUARIO(): # Lista con opciones para el usuario
     print("Que desea realizar?")
     opcion = int(input("1. Ver tareas\n" \
     "2. Agregar tarea\n" \
@@ -86,10 +86,10 @@ def OPCIONES_USUARIO():
     "5. Salir\n"))
     return opcion
 
-ruta_json = Path(r"C:\Users\SANTINO\OneDrive\Escritorio\Proyectos Python Automatizacion\GestorDeTareas\lista_tareas.json")
+ruta_json = Path(r"C:\Users\SANTINO\OneDrive\Escritorio\Proyectos Python Automatizacion\GestorDeTareas\lista_tareas.json") # Ruta al archivo Json
 
 lis_datos = CARGAR_DATOS_JSON(ruta_json)
-if lis_datos == None:
+if lis_datos == None: # Verifica que haya cargado correctamente
     print("No se encontro el archivo para almacenar.")
 else:
     salir = False
@@ -111,4 +111,4 @@ else:
         except ValueError:
             print("Ingrese un valor válido. \n")
 
-    ALMACENAR_DATOS(ruta_json, lis_datos)
+    ALMACENAR_DATOS(ruta_json, lis_datos) # almacena los datos
