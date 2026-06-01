@@ -35,6 +35,7 @@ def AGREGAR_TAREA(datos): # Permite agregar nuevas tareas
         dicc_tarea["Etiqueta"] = input("Ingrese una etiqueta para la tarea: ")
         dicc_tarea["Estado"] = "Incompleta"
         datos.append(dicc_tarea)
+        print("La tarea se añadio con éxito")
     except:
         print("A ocurrido un error a la hora de crear la tarea, volver a intentar")
     return datos
